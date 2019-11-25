@@ -26,7 +26,7 @@
          echo $site;
          ?>
      </h1>
-       <h2>Bienvenue</h2>
+       <h2>Bienvenue toto</h2>
  </div>
  <p class= "lead text-muted">Netflix propose des films et des séries ! </p>
 </section>
