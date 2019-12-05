@@ -84,6 +84,9 @@ $films = $req;}
 foreach ($films as $element){
   card($element["titre"],$element["image"],$element["description"],$element["lien"]);
 }
+
+
+
                  ?>
    
             </div>
