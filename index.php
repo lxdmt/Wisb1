@@ -71,15 +71,32 @@ $dbh = new PDO ("mysql:host=$host;dbname=$dbname",$login,$password);
 
 if (array_key_exists("annee",$_GET)){
   $annee=$_GET["annee"];
-  $req=$dbh -> prepare("SELECT * FROM film WHERE annee = :annee");$req -> bindParam(":annee",$annee);
+  $req=$dbh -> prepare("SELECT * FROM film WHERE annee = :annee");
+  $req -> bindParam(":annee",$annee);
   $req -> execute();
   $films = $req;
 }
+
 else{
 
 $req = $dbh -> query("SELECT * FROM film");
 
-$films = $req;}
+$films = $req;
+}
+
+if (array_key_exists("genre",$_GET)){
+  $genre=$_GET["genre"];
+  $req=$dbh -> prepare("SELECT * FROM film INNER JOIN genre ON film.genre_id = genre.id WHERE genre.libelle = $genre");
+  $req -> bindParam(":genre",$genre);
+  $req -> execute();
+  $films = $req;
+}
+
+else{
+
+$req = $dbh -> query("SELECT * FROM film");
+
+$films = $req;
 
 foreach ($films as $element){
   card($element["titre"],$element["image"],$element["description"],$element["lien"]);
